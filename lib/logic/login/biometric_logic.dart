@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/auth_bloc.dart';
 import '../../bloc/auth_event.dart';
+import '../../service/deviceid/deviceid_imei.dart';
 
 // Check if the device supports biometrics
 Future<void> checkBiometrics() async {
@@ -62,7 +63,7 @@ Future<void> authenticate(BuildContext context, LocalAuthentication localAuth) a
   final savedDeviceId = prefs.getString('deviceid');
   final savedBiotoken = prefs.getString('biotoken');
   final token = "ABCD1";  // Replace with actual token
-  final imei = savedDeviceId ?? '';
+  final imei = await savedDeviceId ?? '';
 
   print('Attempting biometric authentication...');
 
@@ -133,8 +134,10 @@ Future<void> _enableBiometric(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
   final lid = prefs.getString('lid') ?? '';
   if (lid.isNotEmpty) {
-    final imei = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
-    final deviceID = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
+    //final imei = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
+    //final deviceID = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
+    final deviceID = await getDeviceId() ?? '';
+    final imei = await getImeiNumber();
 
     final response = await http.post(
       Uri.parse('https://mycitywebapi.randomaccess.ca/mycityapi/EnableBiometric'),

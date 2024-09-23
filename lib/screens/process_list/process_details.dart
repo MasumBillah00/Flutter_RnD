@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../main.dart';
 import '../attachment_content.dart';
 import '../attachment_list.dart';

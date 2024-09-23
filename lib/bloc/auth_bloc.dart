@@ -121,6 +121,7 @@
 // }
 
 import 'dart:async';
+import 'package:autologout_biometric/service/deviceid/deviceid_imei.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -142,7 +143,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final response = await http.post(url,
         body: jsonEncode({
           "token": "ABCD1",
-          "imei": "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E",
+          "imei": await getImeiNumber(),
           "userName": event.username,
           "password": event.password
         }),
@@ -217,7 +218,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       url,
       body: jsonEncode({
         "token": "ABCD1", // Replace with actual token if needed
-        "imei": "your_imei", // Replace with actual IMEI
+        "imei": await getImeiNumber(), // Replace with actual IMEI
         "lid": lid,
       }),
       headers: {"Content-Type": "application/json"},
