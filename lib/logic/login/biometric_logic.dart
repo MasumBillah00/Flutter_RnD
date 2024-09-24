@@ -137,7 +137,7 @@ Future<void> _enableBiometric(BuildContext context) async {
     //final imei = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
     //final deviceID = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
     final deviceID = await getDeviceId() ?? '';
-    final imei = await getImeiNumber();
+    final imei = await getDeviceId();
 
     final response = await http.post(
       Uri.parse('https://mycitywebapi.randomaccess.ca/mycityapi/EnableBiometric'),

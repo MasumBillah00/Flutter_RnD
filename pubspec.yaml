@@ -46,7 +46,7 @@ dependencies:
   permission_handler:
   url_launcher:
 #  flutter_telephony_info:
-  device_imei:
+#  device_imei:
 
 dev_dependencies:
   flutter_test:

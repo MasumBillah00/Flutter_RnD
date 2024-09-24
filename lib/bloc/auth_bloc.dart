@@ -143,7 +143,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final response = await http.post(url,
         body: jsonEncode({
           "token": "ABCD1",
-          "imei": await getImeiNumber(),
+          "imei": await getDeviceId(),
           "userName": event.username,
           "password": event.password
         }),
@@ -218,7 +218,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       url,
       body: jsonEncode({
         "token": "ABCD1", // Replace with actual token if needed
-        "imei": await getImeiNumber(), // Replace with actual IMEI
+        "imei": await getDeviceId(), // Replace with actual IMEI
         "lid": lid,
       }),
       headers: {"Content-Type": "application/json"},

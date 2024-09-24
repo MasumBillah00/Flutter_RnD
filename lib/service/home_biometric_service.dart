@@ -25,7 +25,7 @@ class BiometricService {
 
     final lid = prefs.getString('lid') ?? '';
     final token = "ABCD1";
-    final imei = await getImeiNumber() ?? '';
+    final imei = await getDeviceId() ?? '';
     final deviceID = await getDeviceId()?.toString() ?? '';  // Ensure deviceID is a string
 
     if (lid.isNotEmpty) {
