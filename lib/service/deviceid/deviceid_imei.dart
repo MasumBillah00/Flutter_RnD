@@ -6,8 +6,11 @@ Future<String?> getDeviceId() async {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     return androidInfo.id ?? "unknown Device ID";
   } catch (e) {
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    return androidInfo.id; // This returns a unique device ID (can be used in place of IMEI)
+    print('Error$e');
+    return "Error Retrieving Device Id";
+
+    // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    // return androidInfo.id; // This returns a unique device ID (can be used in place of IMEI)
   }
 }
 // Future<String?> getImeiNumber() async {
