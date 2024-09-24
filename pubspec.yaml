@@ -43,7 +43,7 @@ dependencies:
   open_file:
   local_auth:
   device_info_plus:
-  permission_handler:
+#  permission_handler:
   url_launcher:
 #  flutter_telephony_info:
 #  device_imei:
