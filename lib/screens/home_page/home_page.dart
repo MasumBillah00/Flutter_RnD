@@ -88,7 +88,7 @@ class HomePageState extends State<HomePage> {
           ),
           // Position the TimerDisplay widget
           Positioned(
-            bottom: 70,
+            bottom: 90,
             right: 10,
             child: TimerDisplay(
               inactivityTimerNotifier: widget.inactivityTimerNotifier,
