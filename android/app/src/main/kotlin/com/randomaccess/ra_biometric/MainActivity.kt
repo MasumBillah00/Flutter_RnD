@@ -1,4 +1,4 @@
-package com.example.autologout_biometric
+package com.randomaccess.ra_biometric
 
 
 import io.flutter.embedding.android.FlutterFragmentActivity
