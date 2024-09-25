@@ -233,33 +233,5 @@ Future<void> _showWarningDialog(BuildContext context) async {
 }
 
 
-// Future<void> _showWarningDialog(BuildContext context) async {
-//   return showDialog<void>(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         title: const Text('Warning',style: TextStyle(color: Colors.red),),
-//         content:  Text('Are you sure you want to remove all biometric information?',
-//           style: TextStyle(color: Colors.black),),
-//         actions: <Widget>[
-//           TextButton(
-//             child: const Text('Cancel',style: TextStyle(color: Colors.blue),),
-//             onPressed: () {
-//               Navigator.of(context).pop(); // Close the dialog
-//             },
-//           ),
-//           TextButton(
-//             child: const Text('Yes',style: TextStyle(color: Colors.red),),
-//             onPressed: () {
-//               removeBiometricInformation(); // Remove biometric info
-//               Navigator.of(context).pop(); // Close the dialog
-//             },
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }
-
 
 
