@@ -43,6 +43,7 @@ dependencies:
   open_file:
   local_auth:
   device_info_plus:
+  android_intent_plus:
 #  permission_handler:
   url_launcher:
 #  flutter_telephony_info:

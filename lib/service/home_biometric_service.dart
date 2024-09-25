@@ -1,11 +1,13 @@
 
+
+//
 // import 'dart:convert';
 // import 'package:autologout_biometric/service/deviceid/deviceid_imei.dart';
 // import 'package:flutter/material.dart';
 // import 'package:local_auth/local_auth.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:http/http.dart' as http;
-// import 'package:url_launcher/url_launcher.dart';  // Import for opening settings
+// import 'package:url_launcher/url_launcher.dart';  // Import url_launcher
 //
 // class BiometricService {
 //   final LocalAuthentication _localAuth = LocalAuthentication();
@@ -25,9 +27,9 @@
 //
 //     final lid = prefs.getString('lid') ?? '';
 //     final token = "ABCD1";
-//
 //     final deviceID = await getDeviceId()?.toString() ?? '';
-//     final imei = deviceID;// Ensure deviceID is a string
+//     final imei = deviceID;
+//
 //
 //     if (lid.isNotEmpty) {
 //       try {
@@ -74,7 +76,6 @@
 //                 }
 //               } else {
 //                 print('Error: bioToken is not a valid string.');
-//                 await prefs.setBool('biometricEnabled', false);
 //                 if (context.mounted) {
 //                   ScaffoldMessenger.of(context).showSnackBar(
 //                     const SnackBar(content: Text('Invalid biometric token received.')),
@@ -82,7 +83,6 @@
 //                 }
 //               }
 //             } else {
-//               await prefs.setBool('biometricEnabled', false);
 //               print("Failed to enable biometric: ${data['message']}");
 //               if (context.mounted) {
 //                 ScaffoldMessenger.of(context).showSnackBar(
@@ -91,7 +91,6 @@
 //               }
 //             }
 //           } else {
-//             await prefs.setBool('biometricEnabled', false);
 //             print("Error: ${response.statusCode} - ${response.body}");
 //             if (context.mounted) {
 //               ScaffoldMessenger.of(context).showSnackBar(
@@ -100,23 +99,25 @@
 //             }
 //           }
 //         } else {
-//           await prefs.setBool('biometricEnabled', false);
 //           print("Biometric setup declined by user.");
 //           if (context.mounted) {
 //             ScaffoldMessenger.of(context).showSnackBar(
 //               const SnackBar(content: Text('Biometric setup was cancelled.')),
 //             );
-//             showGoToSettingsDialog(context);  // Option to go to settings
+//
+//             // Option to open device settings
+//             showGoToSettingsDialog(context);
 //           }
 //         }
 //       } catch (e) {
-//         await prefs.setBool('biometricEnabled', false);
 //         print("Error during biometric setup: $e");
 //         if (context.mounted) {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             const SnackBar(content: Text('An error occurred during biometric setup.')),
-//           );
-//           showGoToSettingsDialog(context);  // Option to go to settings
+//           // ScaffoldMessenger.of(context).showSnackBar(
+//           //   const SnackBar(content: Text('An error occurred during biometric setup.')),
+//           // );
+//
+//           // Option to open device settings
+//           showGoToSettingsDialog(context);
 //         }
 //       }
 //     } else {
@@ -147,39 +148,36 @@
 //       builder: (context) {
 //         return AlertDialog(
 //           title: const Text('Go to Settings'),
-//           content: const Text('Do you want to open the device settings to configure biometric authentication?'),
-//           actions: [
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop(); // Close the dialog
-//               },
-//               child: const Text('Cancel'),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop(); // Close the dialog
-//                 openDeviceSettings(); // Open settings
-//               },
-//               child: const Text('Go to Settings'),
-//             ),
-//           ],
+//           content: const Text('Please Enable Biometric'),
+//           // actions: [
+//           //   TextButton(
+//           //     onPressed: () {
+//           //       Navigator.of(context).pop(); // Close the dialog
+//           //     },
+//           //     child: const Text('Cancel'),
+//           //   ),
+//           //   TextButton(
+//           //     onPressed: () {
+//           //       Navigator.of(context).pop(); // Close the dialog
+//           //       openDeviceSettings(); // Open settings
+//           //     },
+//           //     child: const Text('Go to Settings'),
+//           //   ),
+//           // ],
 //         );
 //       },
 //     );
 //   }
 // }
-
-//
-// jjjjjjj
-
 import 'dart:convert';
+import 'dart:io';
 import 'package:autologout_biometric/service/deviceid/deviceid_imei.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';  // Import url_launcher
-
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:url_launcher/url_launcher.dart';
 class BiometricService {
   final LocalAuthentication _localAuth = LocalAuthentication();
 
@@ -197,10 +195,9 @@ class BiometricService {
     }
 
     final lid = prefs.getString('lid') ?? '';
-    final token = "ABCD1";
+    final token = "ABCD1"; // This is just a placeholder
     final deviceID = await getDeviceId()?.toString() ?? '';
-    final imei = deviceID;
-
+    final imei = deviceID; // Assuming IMEI is same as deviceID
 
     if (lid.isNotEmpty) {
       try {
@@ -283,10 +280,6 @@ class BiometricService {
       } catch (e) {
         print("Error during biometric setup: $e");
         if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('An error occurred during biometric setup.')),
-          );
-
           // Option to open device settings
           showGoToSettingsDialog(context);
         }
@@ -301,14 +294,24 @@ class BiometricService {
     }
   }
 
-  // Function to open device settings
+  // Function to open device settings (iOS or Android)
   Future<void> openDeviceSettings() async {
-    const urlString = 'App-Prefs:root=';
-    final url = Uri.parse(urlString); // Convert to Uri
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Could not launch $urlString';
+    try {
+      if (Platform.isAndroid) {
+        final intent = AndroidIntent(
+          action: 'android.settings.SECURITY_SETTINGS', // Opens Security Settings on Android
+        );
+        await intent.launch();
+      } else if (Platform.isIOS) {
+        const url = 'app-settings:'; // Opens the app settings on iOS
+        if (await canLaunchUrl(Uri.parse(url))) {
+          await launchUrl(Uri.parse(url));
+        } else {
+          print('Could not launch iOS settings');
+        }
+      }
+    } catch (e) {
+      print('Error opening device settings: $e');
     }
   }
 
@@ -319,7 +322,7 @@ class BiometricService {
       builder: (context) {
         return AlertDialog(
           title: const Text('Go to Settings'),
-          content: const Text('Do you want to open the device settings to configure biometric authentication?'),
+          content: const Text('Please enable biometric authentication in your device settings.'),
           actions: [
             TextButton(
               onPressed: () {
@@ -330,7 +333,7 @@ class BiometricService {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
-                openDeviceSettings(); // Open settings
+                openDeviceSettings(); // Open device settings
               },
               child: const Text('Go to Settings'),
             ),
@@ -340,129 +343,3 @@ class BiometricService {
     );
   }
 }
-
-
-//
-// import 'dart:convert';
-// import 'package:autologout_biometric/service/deviceid/deviceid_imei.dart';
-// import 'package:flutter/material.dart'; // Import this for showing SnackBar
-// import 'package:local_auth/local_auth.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:http/http.dart' as http;
-//
-//
-// class BiometricService {
-//   final LocalAuthentication _localAuth = LocalAuthentication();
-//
-//   Future<void> enableBiometric(BuildContext context) async {
-//     final prefs = await SharedPreferences.getInstance();
-//     final hasBiometricEnabled = prefs.getBool('biometricEnabled') ?? false;
-//
-//     if (hasBiometricEnabled) {
-//       if (context.mounted) {
-//         ScaffoldMessenger.of(context).showSnackBar(
-//           SnackBar(content: Text('Biometric login is already enabled.')),
-//         );
-//       }
-//       return;
-//     }
-//
-//     final lid = prefs.getString('lid') ?? '';
-//     final token = "ABCD1";
-//     final imei = await getImeiNumber() ?? '';
-//     final deviceID = await getDeviceId()?.toString() ?? '';  // Ensure deviceID is a string
-//
-//     if (lid.isNotEmpty) {
-//       try {
-//         final enabled = await _localAuth.authenticate(
-//           localizedReason: 'Enable biometric for future logins',
-//           options: const AuthenticationOptions(biometricOnly: true),
-//         );
-//
-//         if (enabled) {
-//           final response = await http.post(
-//             Uri.parse('https://mycitywebapi.randomaccess.ca/mycityapi/EnableBiometric'),
-//             headers: {"Content-Type": "application/json"},
-//             body: jsonEncode({
-//               "token": token,
-//               "imei": imei,
-//               "lid": lid,
-//               "deviceID": deviceID,
-//             }),
-//           );
-//
-//           if (response.statusCode == 200) {
-//             final data = jsonDecode(response.body);
-//
-//             // Ensure that `bioToken` is a string
-//             if (data['isSuccess']) {
-//               final bioToken = data['bioToken']?.toString() ?? '';  // Explicitly cast or handle null
-//
-//               if (bioToken.isNotEmpty) {
-//                 final userId = prefs.getString('validUserId') ?? '';
-//
-//                 if (userId.isNotEmpty) {
-//                   await prefs.setString('userid', userId);
-//                   await prefs.setString('deviceid', deviceID);  // Ensure this is a String
-//                   await prefs.setString('biotoken', bioToken);
-//                   await prefs.setBool('biometricEnabled', true);
-//                   print("Biometric info saved successfully.");
-//
-//                   if (context.mounted) {
-//                     ScaffoldMessenger.of(context).showSnackBar(
-//                       SnackBar(content: Text('Biometric login has been enabled.')),
-//                     );
-//                   }
-//                 } else {
-//                   print("Error: validUserId is null.");
-//                 }
-//               } else {
-//                 print('Error: bioToken is not a valid string.');
-//                 if (context.mounted) {
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     SnackBar(content: Text('Invalid biometric token received.')),
-//                   );
-//                 }
-//               }
-//             } else {
-//               print("Failed to enable biometric: ${data['message']}");
-//               if (context.mounted) {
-//                 ScaffoldMessenger.of(context).showSnackBar(
-//                   SnackBar(content: Text('Failed to enable biometric: ${data['message']}')),
-//                 );
-//               }
-//             }
-//           } else {
-//             print("Error: ${response.statusCode} - ${response.body}");
-//             if (context.mounted) {
-//               ScaffoldMessenger.of(context).showSnackBar(
-//                 SnackBar(content: Text('Server error: ${response.statusCode}')),
-//               );
-//             }
-//           }
-//         } else {
-//           print("Biometric setup declined by user.");
-//           if (context.mounted) {
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(content: Text('Biometric setup was cancelled.')),
-//             );
-//           }
-//         }
-//       } catch (e) {
-//         print("Error during biometric setup: $e");
-//         if (context.mounted) {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             SnackBar(content: Text('An error occurred during biometric setup.')),
-//           );
-//         }
-//       }
-//     } else {
-//       print("Error: lid is null or empty.");
-//       if (context.mounted) {
-//         ScaffoldMessenger.of(context).showSnackBar(
-//           SnackBar(content: Text('User ID is missing. Cannot enable biometric.')),
-//         );
-//       }
-//     }
-//   }
-// }

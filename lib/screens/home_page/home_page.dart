@@ -88,7 +88,7 @@ class HomePageState extends State<HomePage> {
           ),
           // Position the TimerDisplay widget
           Positioned(
-            bottom: 90,
+            bottom: 100,
             right: 10,
             child: TimerDisplay(
               inactivityTimerNotifier: widget.inactivityTimerNotifier,
@@ -133,5 +133,3 @@ class LoadingOverlay extends StatelessWidget {
     );
   }
 }
-
-
