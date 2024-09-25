@@ -195,8 +195,8 @@ class BiometricService {
     }
 
     final lid = prefs.getString('lid') ?? '';
-    final token = "ABCD1"; // This is just a placeholder
-    final deviceID = await getDeviceId()?.toString() ?? '';
+    const token = "ABCD1"; // This is just a placeholder
+    final deviceID = getDeviceId().toString();
     final imei = deviceID; // Assuming IMEI is same as deviceID
 
     if (lid.isNotEmpty) {
@@ -298,11 +298,12 @@ class BiometricService {
   Future<void> openDeviceSettings() async {
     try {
       if (Platform.isAndroid) {
-        final intent = AndroidIntent(
+        const intent =  AndroidIntent(
           action: 'android.settings.SECURITY_SETTINGS', // Opens Security Settings on Android
         );
         await intent.launch();
-      } else if (Platform.isIOS) {
+      }
+      else if (Platform.isIOS) {
         const url = 'app-settings:'; // Opens the app settings on iOS
         if (await canLaunchUrl(Uri.parse(url))) {
           await launchUrl(Uri.parse(url));
