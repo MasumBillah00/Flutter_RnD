@@ -76,41 +76,43 @@ class _LoginPageState extends State<LoginPage> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Login',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 75),
-            _buildTextField(_usernameController, 'Username', Icons.person),
-            const SizedBox(height: 12),
-            _buildPasswordField(_passwordController, 'Password', Icons.lock),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () {
-                loginUser(context, _usernameController.text, _passwordController.text); // Moved to `login_logic.dart`
-              },
-              child: const Text('Login'),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => authenticate(context, _localAuth), // Moved to `biometric_logic.dart`
-              child: const Text('Login with Biometrics'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _showWarningDialog(context); // Show warning dialog before removing biometric info
-              },
-              child: const Text('Remove Biometric Information'),
-            ),
-          ],
+              const SizedBox(height: 75),
+              _buildTextField(_usernameController, 'Username', Icons.person),
+              const SizedBox(height: 12),
+              _buildPasswordField(_passwordController, 'Password', Icons.lock),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () {
+                  loginUser(context, _usernameController.text, _passwordController.text); // Moved to `login_logic.dart`
+                },
+                child: const Text('Login'),
+              ),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () => authenticate(context, _localAuth), // Moved to `biometric_logic.dart`
+                child: const Text('Login with Biometrics'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  _showWarningDialog(context); // Show warning dialog before removing biometric info
+                },
+                child: const Text('Remove Biometric Information'),
+              ),
+            ],
+          ),
         ),
       ),
     );
