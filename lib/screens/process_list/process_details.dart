@@ -16,7 +16,7 @@ class ProcessDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
@@ -116,11 +116,17 @@ class ProcessDetails extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(title, style:
+          const TextStyle(
+              fontWeight: FontWeight.bold,
+            color: Colors.black87,
+
+          ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(value ?? ''),
+          child: Text(value ?? '',style: const TextStyle(color: Colors.black),),
         ),
       ],
     );
@@ -234,6 +240,4 @@ class ProcessDetails extends StatelessWidget {
       ),
     );
   }
-
-
 }

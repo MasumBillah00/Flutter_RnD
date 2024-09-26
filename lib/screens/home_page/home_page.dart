@@ -59,46 +59,57 @@ class HomePageState extends State<HomePage> {
           });
         }
       },
-      child: Stack(
-        children: [
-          Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                'Home Page',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Scaffold(
+              appBar: PreferredSize(
+                preferredSize:const Size.fromHeight(70),
+                child: AppBar(
+                  title: const Padding(
+                    padding:  EdgeInsets.only(top: 10.0),
+                    child:  Text(
+                      'Home',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                      ),
+                    ),
+                  ),
                 ),
               ),
+              body: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: _pages[_currentIndex],
+              ), // Display content based on selected tab
+              bottomNavigationBar: CustomBottomNav(
+                currentIndex: _currentIndex,
+                onTap: (index) {
+                  if (index == 3) {
+                    BlocProvider.of<AuthBloc>(context).add(AutoLogoutEvent()); // Logout
+                  } else {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  }
+                },
+              ),
+              drawer: const CustomDrawer(),
             ),
-            body: _pages[_currentIndex], // Display content based on selected tab
-            bottomNavigationBar: CustomBottomNav(
-              currentIndex: _currentIndex,
-              onTap: (index) {
-                if (index == 3) {
-                  BlocProvider.of<AuthBloc>(context).add(AutoLogoutEvent()); // Logout
-                } else {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                }
-              },
+            // Position the TimerDisplay widget
+            Positioned(
+              bottom: 100,
+              right: 10,
+              child: TimerDisplay(
+                inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                graceTimerNotifier: widget.graceTimerNotifier,
+              ),
             ),
-            drawer: const CustomDrawer(),
-          ),
-          // Position the TimerDisplay widget
-          Positioned(
-            bottom: 100,
-            right: 10,
-            child: TimerDisplay(
-              inactivityTimerNotifier: widget.inactivityTimerNotifier,
-              graceTimerNotifier: widget.graceTimerNotifier,
-            ),
-          ),
-          // Show loading overlay if _isLoading is true
-          if (_isLoading)
-            const LoadingOverlay(),
-        ],
+            // Show loading overlay if _isLoading is true
+            if (_isLoading)
+              const LoadingOverlay(),
+          ],
+        ),
       ),
     );
   }
@@ -117,8 +128,8 @@ class LoadingOverlay extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(), // Loading indicator
-            const SizedBox(height: 20), // Space between the indicator and text
+            const CircularProgressIndicator(),
+            const SizedBox(height: 20),
             Text(
               message,
               style:  TextStyle(
