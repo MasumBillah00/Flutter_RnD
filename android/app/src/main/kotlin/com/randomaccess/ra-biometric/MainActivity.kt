@@ -1,4 +1,4 @@
-package com.randomaccess.ra_biometric
+package com.randomaccess.ra-biometric
 
 
 import io.flutter.embedding.android.FlutterFragmentActivity

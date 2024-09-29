@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.randomaccess.ra_biometric">
+    package="com.randomaccess.ra-biometric">
 
 
     <uses-feature
