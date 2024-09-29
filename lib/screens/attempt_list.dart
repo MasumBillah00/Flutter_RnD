@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
 import '../inactivitytimer.dart';
 import '../service/attempt_list.dart';
 
@@ -53,27 +50,51 @@ class _ProcessAttemptListPageState extends State<ProcessAttemptListPage> {
             } else if (snapshot.hasData) {
               List<dynamic>? processAttempts = snapshot.data;
               if (processAttempts != null && processAttempts.isNotEmpty) {
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    columns: const [
-                      DataColumn(label: Text('Attempt Comment')),
-                      DataColumn(label: Text('Attempt RSN')),
-                      DataColumn(label: Text('Process RSN')),
-                      DataColumn(label: Text('Result Code')),
-                      DataColumn(label: Text('Result Description')),
-                    ],
-                    rows: processAttempts.map((attempt) {
-                      return DataRow(cells: [
-                        DataCell(Text(attempt['attemptComment'] ?? '')),
-                        DataCell(Text(attempt['attemptRSN'].toString())),
-                        DataCell(Text(attempt['processRSN'].toString())),
-                        DataCell(Text(attempt['resultCode'].toString())),
-                        DataCell(Text(attempt['resultDesc'] ?? '')),
-                      ]);
-                    }).toList(),
-                  ),
+
+                return ListView.builder(
+                  itemCount: processAttempts.length,
+                  itemBuilder: (context, index) {
+                    final attempt = processAttempts[index];
+                    return Card(
+                      color: Colors.black.withOpacity(0.001),
+                      margin: const EdgeInsets.all(8),
+                      child: ListTile(
+                        title: Text("Attempt Comment: ${attempt['attemptComment'] ?? ''}"),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Attempt RSN: ${attempt['attemptRSN']}"),
+                            Text("Process RSN: ${attempt['processRSN']}"),
+                            Text("Result Code: ${attempt['resultCode']}"),
+                            Text("Result Description: ${attempt['resultDesc'] ?? ''}"),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 );
+
+                // return SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: DataTable(
+                //     columns: const [
+                //       DataColumn(label: Text('Attempt Comment')),
+                //       DataColumn(label: Text('Attempt RSN')),
+                //       DataColumn(label: Text('Process RSN')),
+                //       DataColumn(label: Text('Result Code')),
+                //       DataColumn(label: Text('Result Description')),
+                //     ],
+                //     rows: processAttempts.map((attempt) {
+                //       return DataRow(cells: [
+                //         DataCell(Text(attempt['attemptComment'] ?? '')),
+                //         DataCell(Text(attempt['attemptRSN'].toString())),
+                //         DataCell(Text(attempt['processRSN'].toString())),
+                //         DataCell(Text(attempt['resultCode'].toString())),
+                //         DataCell(Text(attempt['resultDesc'] ?? '')),
+                //       ]);
+                //     }).toList(),
+                //   ),
+                // );
               } else {
                 return const Center(child: Text("No attempts found"));
               }

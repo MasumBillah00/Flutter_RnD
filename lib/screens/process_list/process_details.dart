@@ -189,7 +189,6 @@ class ProcessDetails extends StatelessWidget {
               );
             },
           ),
-          // Attachment Content Page
           IconButton(
             icon: const Icon(Icons.content_copy),
             onPressed: () {

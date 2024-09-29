@@ -160,14 +160,18 @@ class BiometricService {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel',
+                style: TextStyle(
+                    color: Colors.red),),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
                 openDeviceSettings(); // Open device settings
               },
-              child: const Text('Go to Settings'),
+              child:  Text('Go to Settings',
+                style: TextStyle(
+                    color:Colors.blue.shade700 ),),
             ),
           ],
         );
