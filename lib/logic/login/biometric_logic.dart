@@ -133,11 +133,14 @@ Future<void> authenticate(BuildContext context, LocalAuthentication localAuth) a
 Future<void> _enableBiometric(BuildContext context) async {
   final prefs = await SharedPreferences.getInstance();
   final lid = prefs.getString('lid') ?? '';
+  final deviceID = getDeviceId().toString();
+  //final deviceID = await getDeviceId() ?? '';
+  final imei = deviceID;
   if (lid.isNotEmpty) {
     //final imei = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
     //final deviceID = "D237DBC1-D0A6-4FB8-8E45-21C0785BB63E";
-    final deviceID = await getDeviceId() ?? '';
-    final imei = deviceID;
+    // final deviceID = await getDeviceId() ?? '';
+    // final imei = deviceID;
 
     final response = await http.post(
       Uri.parse('https://mycitywebapi.randomaccess.ca/mycityapi/EnableBiometric'),
