@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 import 'package:local_auth/local_auth.dart';
+import '../landing_page.dart';
 import '../logic/login/biometric_logic.dart';
 import '../logic/login/login_logic.dart';
 import 'home_page/home_page.dart';
@@ -51,15 +52,15 @@ class _LoginPageState extends State<LoginPage> {
                   await promptBiometricSetup(context); // Moved to `biometric_logic.dart`
                 }
 
+
                 // Navigate to HomePage, passing the timer notifiers
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(
+                    builder: (context) => Landing_Page(
                       inactivityTimerNotifier: widget.inactivityTimerNotifier,
                       graceTimerNotifier: widget.graceTimerNotifier,
-                    ),
-                  ),
+                  ),)
                 );
               } else if (state is LoginFailureState) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  _showWarningDialog(context); // Show warning dialog before removing biometric info
+                  showWarningDialog(context); // Show warning dialog before removing biometric info
                 },
                 child: const Text('Remove Biometric Information'),
               ),
@@ -141,99 +142,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-Future<void> removeBiometricInformation() async {
-  final prefs = await SharedPreferences.getInstance();
-
-  // Remove biometric-related data
-  await prefs.remove('userid');
-  await prefs.remove('deviceid');
-  await prefs.remove('biotoken');
-  await prefs.setBool('biometricEnabled', false);  // Disable biometric login
-  await prefs.setBool('biometricPrompted', false); // Reset biometric prompt status
-
-}
-
-Future<void> _showWarningDialog(BuildContext context) async {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        titlePadding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-        contentPadding: const EdgeInsets.all(20),
-        actionsPadding: const EdgeInsets.only(right: 10, bottom: 10),
-
-        // Custom title with warning icon and text
-        title: Row(
-          children: const [
-            Icon(Icons.warning, color: Colors.red, size: 30),
-            SizedBox(width: 10),
-            Text(
-              'Warning',
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-
-        // Custom content text
-        content: const Text(
-          'Are you sure you want to remove all biometric information?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-          ),
-        ),
-
-        // Action buttons
-        actions: <Widget>[
-          // Cancel button with blue color
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            child: const Text(
-              'Cancel',
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-            },
-          ),
-
-          // Yes button with red color for emphasis
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            child: const Text(
-              'Yes',
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            onPressed: () {
-              removeBiometricInformation(); // Remove biometric info
-              Navigator.of(context).pop(); // Close the dialog
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
 
 
 
