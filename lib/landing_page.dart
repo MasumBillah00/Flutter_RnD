@@ -6,13 +6,10 @@ import 'package:flutter/material.dart';
 class Landing_Page extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
   final ValueNotifier<int> graceTimerNotifier;
-
   Landing_Page({super.key, required this.inactivityTimerNotifier, required this.graceTimerNotifier});
-
   @override
   State<Landing_Page> createState() => _Landing_PageState();
 }
-
 class _Landing_PageState extends State<Landing_Page> {
   @override
   Widget build(BuildContext context) {
@@ -47,8 +44,8 @@ class _Landing_PageState extends State<Landing_Page> {
                       elevation: 4,
                       color: Colors.greenAccent,
                       child: Container(
-                        height: 180,
-                        width: 180,
+                        height: 160,
+                        width: 160,
                         child: const Center(
                             child: Text(
                           'Process Details',
@@ -76,13 +73,16 @@ class _Landing_PageState extends State<Landing_Page> {
                       elevation: 4,
                       color: Colors.greenAccent,
                       child: Container(
-                        height: 180,
-                        width: 180,
+                        height: 160,
+                        width: 160,
                         child: const Align(
                           alignment: Alignment.center,
                           child: Text(
                             'Bottom Sheet',
-                            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                       ),
@@ -107,13 +107,16 @@ class _Landing_PageState extends State<Landing_Page> {
                   elevation: 4,
                   color: Colors.greenAccent,
                   child: Container(
-                    height: 180,
-                    width: 180,
+                    height: 160,
+                    width: 160,
                     child: const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Trac Your Fitness',
-                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
+                        'Your Fitness',
+                        style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
                       ),
                     ),
                   ),

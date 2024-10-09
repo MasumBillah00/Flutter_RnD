@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/auth_state.dart';
+import 'fitness_tracker/bloc/workout_bloc.dart';
+import 'fitness_tracker/bloc/workout_event.dart';
+import 'fitness_tracker/repository/workout_repository.dart';
 import 'inactivitytimer.dart';
 
 void main() {
@@ -20,31 +23,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AuthBloc()),
-      ],
-      child: InactivityListener(
-        inactivityTimerNotifier: inactivityTimerNotifier,
-        graceTimerNotifier: graceTimerNotifier,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Auto Logout App',
-          theme: AppTheme.lightTheme,
-          home: BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              if (state is LoggedInState) {
-                return HomePage(
-                  inactivityTimerNotifier: inactivityTimerNotifier,
-                  graceTimerNotifier: graceTimerNotifier,
-                );
-              } else {
-                return LoginPage(
-                  inactivityTimerNotifier: inactivityTimerNotifier,
-                  graceTimerNotifier: graceTimerNotifier,
-                );
-              }
-            },
+    return RepositoryProvider(
+
+      create: (context) => WorkoutRepository(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AuthBloc()),
+          BlocProvider(
+            create: (context) => WorkoutBloc(context.read<WorkoutRepository>())..add(LoadWorkouts()),
+          ),
+        ],
+        child: InactivityListener(
+          inactivityTimerNotifier: inactivityTimerNotifier,
+          graceTimerNotifier: graceTimerNotifier,
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Auto Logout App',
+            theme: AppTheme.lightTheme,
+            home: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is LoggedInState) {
+                  return HomePage(
+                    inactivityTimerNotifier: inactivityTimerNotifier,
+                    graceTimerNotifier: graceTimerNotifier,
+                  );
+                } else {
+                  return LoginPage(
+                    inactivityTimerNotifier: inactivityTimerNotifier,
+                    graceTimerNotifier: graceTimerNotifier,
+                  );
+                }
+              },
+            ),
           ),
         ),
       ),
