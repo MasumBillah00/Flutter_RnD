@@ -1,14 +1,26 @@
 
 // custom_drawer.dart
+import 'package:autologout_biometric/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/auth_bloc.dart';
 import '../../bloc/auth_event.dart';
 import '../../service/home_biometric_service.dart';
 
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+class CustomDrawer extends StatefulWidget {
+  final ValueNotifier<int> inactivityTimerNotifier;
+  final ValueNotifier<int> graceTimerNotifier;
 
+  const CustomDrawer({Key? key,
+    required this.inactivityTimerNotifier,
+    required this.graceTimerNotifier
+  }) : super(key: key);
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
@@ -36,6 +48,25 @@ class CustomDrawer extends StatelessWidget {
               elevation: 4,
               color: Colors.white.withOpacity(.9),
               child: ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Landing_Page(
+                        inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                        graceTimerNotifier: widget.graceTimerNotifier,
+                      ),
+                      ), // Replace NewPage with the page you want to navigate to
+                    );
+                  }
+              ),
+            ),
+            Card(
+              elevation: 4,
+              color: Colors.white.withOpacity(.9),
+              child: ListTile(
                 leading: Icon(Icons.fingerprint, color: Colors.green.shade900),
                 title: const Text('Enable Biometric'),
                 onTap: () {
@@ -56,6 +87,7 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
             ),
+
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:autologout_biometric/bottom_sheet/screens/bottom_sheet_home.dart';
+import 'package:autologout_biometric/fitness_tracker/view/screen/home_screen.dart';
 import 'package:autologout_biometric/screens/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,8 @@ class _Landing_PageState extends State<Landing_Page> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,15 +81,44 @@ class _Landing_PageState extends State<Landing_Page> {
                         child: const Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Trac Your Fitness',
+                            'Bottom Sheet',
                             style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
                           ),
                         ),
                       ),
                     ),
                   ),
+
                 ],
-              )
+              ),
+              SizedBox(height: 10,),
+              GestureDetector(
+                onTap: () {
+                  // // Navigate to HomePage, passing the timer notifiers
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>const HomeScreen (
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  elevation: 4,
+                  color: Colors.greenAccent,
+                  child: Container(
+                    height: 180,
+                    width: 180,
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Trac Your Fitness',
+                        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -32,7 +32,9 @@ dependencies:
   device_info_plus:
   android_intent_plus:
   change_app_package_name:
-#  permission_handler:
+  sqflite:
+  fl_chart: 0.55.2
+  #  permission_handler:
   url_launcher:
 #  flutter_telephony_info:
 #  device_imei:

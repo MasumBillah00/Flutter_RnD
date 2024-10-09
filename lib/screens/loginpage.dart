@@ -54,13 +54,11 @@ class _LoginPageState extends State<LoginPage> {
 
 
                 // Navigate to HomePage, passing the timer notifiers
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Landing_Page(
+                  MaterialPageRoute(builder: (context) => Landing_Page(
                       inactivityTimerNotifier: widget.inactivityTimerNotifier,
-                      graceTimerNotifier: widget.graceTimerNotifier,
-                  ),)
+                      graceTimerNotifier: widget.graceTimerNotifier)), // Replace NewPage with the page you want to navigate to
                 );
               } else if (state is LoginFailureState) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
@@ -77,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
+        // it might be issue...
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -94,7 +94,9 @@ class HomePageState extends State<HomePage> {
                   }
                 },
               ),
-              drawer: const CustomDrawer(),
+              drawer:  CustomDrawer(
+                inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                graceTimerNotifier: widget.graceTimerNotifier,),
             ),
             // Position the TimerDisplay widget
             Positioned(
