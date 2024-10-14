@@ -44,7 +44,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             graceTimerNotifier: widget.graceTimerNotifier,
           ),
           body: Padding(
-            padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+            padding: const EdgeInsets.only(top: 10,),
             child: BlocBuilder<ToDoAppBloc, TodoappState>(
               builder: (context, state) {
                 if (state.listStatus == ListStatus.loading) {
@@ -114,15 +114,15 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                       showSeeMore: true,
                                     ),
                                   ),
-                                  const SizedBox(width: 10,),
+                                  const SizedBox(width:5,),
 
                                   if (item.image.isNotEmpty) ...[
                                     const SizedBox(height: 5),
                                     Align(
-                                      alignment: Alignment.centerRight,
+                                      alignment: Alignment.center,
                                       child: Container(
                                         height: 150,
-                                        width: 140,
+                                        width: 110,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(12), // Adjust the border radius as needed
                                           border: Border.all(

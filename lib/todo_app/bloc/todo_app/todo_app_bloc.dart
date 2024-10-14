@@ -1,5 +1,5 @@
-import 'package:autologout_biometric/uploading_image/bloc/todo_app/todo_app_event.dart';
-import 'package:autologout_biometric/uploading_image/bloc/todo_app/todo_app_state.dart';
+import 'package:autologout_biometric/todo_app/bloc/todo_app/todo_app_event.dart';
+import 'package:autologout_biometric/todo_app/bloc/todo_app/todo_app_state.dart';
 import 'package:bloc/bloc.dart';
 import '../../model/todo_task_model.dart';
 import '../../repository/todo_repository.dart';

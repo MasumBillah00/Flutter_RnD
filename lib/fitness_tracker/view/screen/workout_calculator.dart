@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../inactivitytimer.dart';
 import '../../bloc/workout_bloc.dart';
 import '../../bloc/workout_event.dart';
 import '../../model/workout_model.dart';
@@ -9,7 +10,9 @@ import '../../widget/textform_field.dart';
 import '../../widget/workout_formfield.dart';
 
 class WorkoutCalculator extends StatefulWidget {
+
   const WorkoutCalculator({super.key});
+
 
   @override
   State<WorkoutCalculator> createState() => _WorkoutCalculatorState();
@@ -159,15 +162,11 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
           ),
         ),
         // Positioned(
-        //   top: 100,
+        //   bottom: 70,
         //   right: 10,
-        //   child: Text(
-        //     'Time left: ${_timerManager.remainingTime} seconds',
-        //     style: const TextStyle(
-        //       fontSize: 16,
-        //       fontWeight: FontWeight.bold,
-        //       color: Colors.redAccent,
-        //     ),
+        //   child: TimerDisplay(
+        //     inactivityTimerNotifier: widget.inactivityTimerNotifier,
+        //     graceTimerNotifier: widget.graceTimerNotifier,
         //   ),
         // ),
       ],

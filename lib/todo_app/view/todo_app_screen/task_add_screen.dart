@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:autologout_biometric/uploading_image/view/todo_app_screen/todo_app_screen.dart';
+import 'package:autologout_biometric/todo_app/view/todo_app_screen/todo_app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/image_picker/image_picker_bloc.dart';

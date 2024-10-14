@@ -1,16 +1,15 @@
 
 import 'package:autologout_biometric/landing_page.dart';
-import 'package:autologout_biometric/screens/home_page/home_page.dart';
 import 'package:autologout_biometric/screens/loginpage.dart';
 import 'package:autologout_biometric/theme/apptheme.dart';
-import 'package:autologout_biometric/uploading_image/bloc/image_picker/image_picker_bloc.dart';
-import 'package:autologout_biometric/uploading_image/bloc/note/note_bloc.dart';
-import 'package:autologout_biometric/uploading_image/bloc/note/note_event.dart';
-import 'package:autologout_biometric/uploading_image/bloc/todo_app/todo_app_bloc.dart';
-import 'package:autologout_biometric/uploading_image/database/dataase_helper.dart';
-import 'package:autologout_biometric/uploading_image/database/note_database.dart';
-import 'package:autologout_biometric/uploading_image/repository/todo_repository.dart';
-import 'package:autologout_biometric/uploading_image/ulitis/image_picker_itilis.dart';
+import 'package:autologout_biometric/todo_app/bloc/image_picker/image_picker_bloc.dart';
+import 'package:autologout_biometric/todo_app/bloc/note/note_bloc.dart';
+import 'package:autologout_biometric/todo_app/bloc/note/note_event.dart';
+import 'package:autologout_biometric/todo_app/bloc/todo_app/todo_app_bloc.dart';
+import 'package:autologout_biometric/todo_app/database/dataase_helper.dart';
+import 'package:autologout_biometric/todo_app/database/note_database.dart';
+import 'package:autologout_biometric/todo_app/repository/todo_repository.dart';
+import 'package:autologout_biometric/todo_app/ulitis/image_picker_itilis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_bloc.dart';
@@ -61,7 +60,7 @@ class MyApp extends StatelessWidget {
           graceTimerNotifier: graceTimerNotifier,
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Auto Logout App',
+            title: 'Flutter RND',
             theme: AppTheme.lightTheme,
             home: BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
@@ -75,6 +74,7 @@ class MyApp extends StatelessWidget {
                     inactivityTimerNotifier: inactivityTimerNotifier,
                     graceTimerNotifier: graceTimerNotifier,
                   );
+
                 }
               },
             ),
