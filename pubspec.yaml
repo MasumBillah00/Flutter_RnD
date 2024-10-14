@@ -34,8 +34,9 @@ dependencies:
   change_app_package_name:
   sqflite:
   fl_chart: 0.55.2
-  #  permission_handler:
   url_launcher:
+  table_calendar:
+  image_picker:
 #  flutter_telephony_info:
 #  device_imei:
 

@@ -31,7 +31,7 @@ class Fitness_Drawer extends StatelessWidget {
                 ),
                 children: <Widget>[
                   SizedBox(
-                    height: 90,
+                    height: 120,
                     child: DrawerHeader(
                       decoration: BoxDecoration(color: Colors.blueGrey[900], borderRadius: BorderRadius.circular(13)),
                       child: const Text(

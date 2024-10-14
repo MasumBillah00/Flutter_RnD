@@ -1,6 +1,7 @@
 import 'package:autologout_biometric/bottom_sheet/screens/bottom_sheet_home.dart';
 import 'package:autologout_biometric/fitness_tracker/view/screen/home_screen.dart';
 import 'package:autologout_biometric/screens/home_page/home_page.dart';
+import 'package:autologout_biometric/uploading_image/view/todo_app_screen/todo_app_screen.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
@@ -16,7 +17,7 @@ class _Landing_PageState extends State<Landing_Page> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('All in One'),
+          title: const Text('All in One'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,13 +41,13 @@ class _Landing_PageState extends State<Landing_Page> {
                         ),
                       );
                     },
-                    child: Card(
+                    child: const Card(
                       elevation: 4,
                       color: Colors.greenAccent,
-                      child: Container(
+                      child: SizedBox(
                         height: 160,
                         width: 160,
-                        child: const Center(
+                        child: Center(
                             child: Text(
                           'Process Details',
                           style: TextStyle(
@@ -69,13 +70,13 @@ class _Landing_PageState extends State<Landing_Page> {
                         ),
                       );
                     },
-                    child: Card(
+                    child: const Card(
                       elevation: 4,
                       color: Colors.greenAccent,
-                      child: Container(
+                      child: SizedBox(
                         height: 160,
                         width: 160,
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.center,
                           child: Text(
                             'Bottom Sheet',
@@ -91,36 +92,72 @@ class _Landing_PageState extends State<Landing_Page> {
 
                 ],
               ),
-              SizedBox(height: 10,),
-              GestureDetector(
-                onTap: () {
-                  // // Navigate to HomePage, passing the timer notifiers
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>const HomeScreen (
-                      ),
-                    ),
-                  );
-                },
-                child: Card(
-                  elevation: 4,
-                  color: Colors.greenAccent,
-                  child: Container(
-                    height: 160,
-                    width: 160,
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Your Fitness',
-                        style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+              const SizedBox(height: 10,),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      // // Navigate to HomePage, passing the timer notifiers
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>const HomeScreen (
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Card(
+                      elevation: 4,
+                      color: Colors.greenAccent,
+                      child: SizedBox(
+                        height: 160,
+                        width: 160,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Your Fitness',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () {
+                      // // Navigate to HomePage, passing the timer notifiers
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ToDoAppScreen (
+                            inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                            graceTimerNotifier: widget.graceTimerNotifier,
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Card(
+                      elevation: 4,
+                      color: Colors.greenAccent,
+                      child: SizedBox(
+                        height: 160,
+                        width: 160,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'TODO',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
