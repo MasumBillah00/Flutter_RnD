@@ -10,7 +10,9 @@ import 'workout_list.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final ValueNotifier<int> inactivityTimerNotifier;
+  final ValueNotifier<int> graceTimerNotifier;
+  const HomeScreen({super.key, required this.inactivityTimerNotifier, required this.graceTimerNotifier});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -49,7 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
           ),
-          drawer: Fitness_Drawer(onItemTapped: _onItemTapped),
+          drawer: Fitness_Drawer(onItemTapped: _onItemTapped,
+            inactivityTimerNotifier: widget.inactivityTimerNotifier,
+            graceTimerNotifier: widget.graceTimerNotifier,
+          ),
           body: _pages[_selectedIndex], // Display the selected page
           bottomNavigationBar: BottomNavigationBar(
             items:  [

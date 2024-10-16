@@ -59,7 +59,9 @@ class _ToDoAppScreenState extends State<ToDoAppScreen> {
           inactivityTimerNotifier: widget.inactivityTimerNotifier,
           graceTimerNotifier: widget.graceTimerNotifier,);
       case 4:
-        return const HomeScreen();
+        return  HomeScreen(
+          inactivityTimerNotifier: widget.inactivityTimerNotifier,
+          graceTimerNotifier: widget.graceTimerNotifier,);
       default:
         return BlocBuilder<ToDoAppBloc, TodoappState>(
           builder: (context, state) {

@@ -37,6 +37,8 @@ dependencies:
   url_launcher:
   table_calendar:
   image_picker:
+  font_awesome_flutter: ^10.7.0
+
 #  flutter_telephony_info:
 #  device_imei:
 

@@ -52,13 +52,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   title: const Text('Home'),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => Landing_Page(
                         inactivityTimerNotifier: widget.inactivityTimerNotifier,
                         graceTimerNotifier: widget.graceTimerNotifier,
                       ),
-                      ), // Replace NewPage with the page you want to navigate to
+
+                      ), //
+                          (Route<dynamic> route) => false,
                     );
                   }
               ),

@@ -7,7 +7,6 @@ import 'package:local_auth/local_auth.dart';
 import '../landing_page.dart';
 import '../logic/login/biometric_logic.dart';
 import '../logic/login/login_logic.dart';
-import 'home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
@@ -51,15 +50,15 @@ class _LoginPageState extends State<LoginPage> {
                 if (!hasBiometricEnabled && !hasBeenPrompted) {
                   await promptBiometricSetup(context); // Moved to `biometric_logic.dart`
                 }
-
-
                 // Navigate to HomePage, passing the timer notifiers
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Landing_Page(
-                      inactivityTimerNotifier: widget.inactivityTimerNotifier,
-                      graceTimerNotifier: widget.graceTimerNotifier)), // Replace NewPage with the page you want to navigate to
-                );
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Landing_Page(
+                          inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                          graceTimerNotifier: widget.graceTimerNotifier),
+                    ),
+                    (Route<dynamic> route) => false);
               } else if (state is LoginFailureState) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
               }
@@ -141,6 +140,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-
