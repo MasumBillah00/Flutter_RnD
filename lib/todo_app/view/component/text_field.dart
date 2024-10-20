@@ -23,7 +23,9 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(
           color: Colors.amber[200],
           fontWeight: FontWeight.bold,
+
         ),
+        fillColor: Colors.black12,
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.amber[200],
@@ -36,14 +38,14 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.amber.shade200,
+            color: Colors.amber.shade300,
             width: 3.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.amber.shade200,
+            color: Colors.amber.shade100,
             width: 2.0,
           ),
         ),

@@ -10,8 +10,13 @@ import '../../widget/textform_field.dart';
 import '../../widget/workout_formfield.dart';
 
 class WorkoutCalculator extends StatefulWidget {
+  final ValueNotifier<int> inactivityTimerNotifier;
+  final ValueNotifier<int> graceTimerNotifier;
 
-  const WorkoutCalculator({super.key});
+  const WorkoutCalculator({super.key,
+    required this.inactivityTimerNotifier,
+    required this.graceTimerNotifier,
+  });
 
 
   @override
@@ -169,6 +174,14 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
         //     graceTimerNotifier: widget.graceTimerNotifier,
         //   ),
         // ),
+        Positioned(
+          bottom: 70,
+          right: 10,
+          child: TimerDisplay(
+            inactivityTimerNotifier: widget.inactivityTimerNotifier,
+            graceTimerNotifier: widget.graceTimerNotifier,
+          ),
+        ),
       ],
     );
   }

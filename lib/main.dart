@@ -1,4 +1,3 @@
-
 import 'package:autologout_biometric/landing_page.dart';
 import 'package:autologout_biometric/screens/loginpage.dart';
 import 'package:autologout_biometric/theme/apptheme.dart';
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-
       create: (context) => WorkoutRepository(),
       child: MultiBlocProvider(
         providers: [
@@ -74,7 +72,6 @@ class MyApp extends StatelessWidget {
                     inactivityTimerNotifier: inactivityTimerNotifier,
                     graceTimerNotifier: graceTimerNotifier,
                   );
-
                 }
               },
             ),

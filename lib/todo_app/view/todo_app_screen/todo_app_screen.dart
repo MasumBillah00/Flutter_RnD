@@ -197,6 +197,7 @@ class _ToDoAppScreenState extends State<ToDoAppScreen> {
         child: Scaffold(
           appBar: _selectedIndex == 0
               ? AppBar(
+            backgroundColor: Colors.amber.shade600,
             title: const Text(
               'TODO APP',
               style: TextStyle(

@@ -15,14 +15,16 @@ class BottomButton extends StatelessWidget{
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.only(bottom: 10,),
+        height: kbottomContainerHeight,
+        color: kbottomContainerColor,
+        margin: const EdgeInsets.only(top: 10),
+        width: double.infinity,
+
         child: Center(
           child: Text(buttonTitle,style: klargeButtonTextStyle,
           ),
-        ),padding: EdgeInsets.only(bottom: 10,),
-        height: kbottomContainerHeight,
-        color: kbottomContainerColor,
-        margin: EdgeInsets.only(top: 10),
-        width: double.infinity,
+        ),
       ),
     );
   }

@@ -56,6 +56,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.amber.shade600,
           title: const Text('Add Task'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -92,15 +93,17 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
               builder: (context, imagePickerState) {
                 return SingleChildScrollView(
                   child: Container(
-                    color: Colors.black.withOpacity(.2),
+                    color: Colors.black.withOpacity(.7),
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 15,
                         right: 15,
                         left: 15,
+                        bottom: 2,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
+                          //crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
@@ -169,6 +172,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                               selectedDate: _selectedDate,
                               image: imagePickerState.file?.path,
                             ),
+
                           ],
                         ),
                       ),

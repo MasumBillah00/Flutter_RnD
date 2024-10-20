@@ -86,8 +86,8 @@ class AddTaskButton extends StatelessWidget {
           );
         }
       },
-      child: const Text('Add Task', style: TextStyle(fontSize: 20)),
       style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.black,
         foregroundColor: Colors.amber,  // Text color
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10), // Rounded corners
@@ -98,54 +98,7 @@ class AddTaskButton extends StatelessWidget {
         elevation: 5, // Shadow effect
         side: BorderSide(color: Colors.amber.shade700, width: .1), // Border
       ),
+      child: const Text('Add Task', style: TextStyle(fontSize: 20)),
     );
   }
 }
-
-
-// class AddTaskButton extends StatelessWidget {
-//   final TextEditingController titleController;
-//   final TextEditingController descriptionController;
-//   final DateTime? selectedDate;
-//   final String? image;
-//
-//   const AddTaskButton({
-//     Key? key,
-//     required this.titleController,
-//     required this.descriptionController,
-//     this.selectedDate,
-//     this.image,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () {
-//         final title = titleController.text;
-//         final description = descriptionController.text;
-//
-//         if (title.isNotEmpty && description.isNotEmpty && selectedDate != null) {
-//           final newTask = TodoTaskModel(
-//             id: DateTime.now().toString(),
-//             value: title,
-//             description: description,
-//             date: selectedDate!,
-//             image: image ??'',
-//           );
-//
-//           context.read<ToDoAppBloc>().add(AddTaskItem(item: newTask));
-//           Navigator.of(context).pop(); // Close the screen after adding the task
-//         } else {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             const SnackBar(
-//               content: Text('Please fill all fields and select a date'),
-//             ),
-//           );
-//         }
-//       },
-//       child: const Text('Add Task',style: TextStyle(
-//         fontSize: 20
-//       ),),
-//     );
-//   }
-// }

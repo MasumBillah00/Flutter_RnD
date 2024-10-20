@@ -229,6 +229,9 @@ class _InputPageState extends State<InputPage> {
               child: Card(
                 elevation: 4,
                 shadowColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
 
                 child: BottomButton(
                   buttonTitle: 'CALCULATE',
