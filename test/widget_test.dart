@@ -1,9 +1,8 @@
+import 'package:autologout_biometric/database/todo_database/database_helper.dart';
+import 'package:autologout_biometric/database/todo_database/note_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:autologout_biometric/main.dart';
-import 'package:autologout_biometric/todo_app/database/dataase_helper.dart';
-import 'package:autologout_biometric/todo_app/database/note_database.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

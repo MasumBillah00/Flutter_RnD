@@ -1,8 +1,8 @@
-import 'package:autologout_biometric/todo_app/bloc/todo_app/todo_app_event.dart';
-import 'package:autologout_biometric/todo_app/bloc/todo_app/todo_app_state.dart';
+import 'package:autologout_biometric/bloc/todo_bloc/todo_app/todo_app_event.dart';
+import 'package:autologout_biometric/bloc/todo_bloc/todo_app/todo_app_state.dart';
 import 'package:bloc/bloc.dart';
-import '../../model/todo_task_model.dart';
-import '../../repository/todo_repository.dart';
+import '../../../todo_app/model/todo_task_model.dart';
+import '../../../todo_app/repository/todo_repository.dart';
 
 class ToDoAppBloc extends Bloc<ToDoAppEvent, TodoappState> {
   final ToDoAppRepository toDoAppRepository;

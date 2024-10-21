@@ -86,7 +86,20 @@ class _HomeScreenState extends State<HomeScreen> {
               inactivityTimerNotifier: widget.inactivityTimerNotifier,
               graceTimerNotifier: widget.graceTimerNotifier,
             ),
-            body: _pages[_selectedIndex], // Display the selected page
+            body: Stack(children: [
+              _pages[_selectedIndex],
+
+              Positioned(
+                bottom: 0,
+                right: 10,
+                child: TimerDisplay(
+                  inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                  graceTimerNotifier: widget.graceTimerNotifier,
+                ),
+              ),
+
+            ],),
+            // Display the selected page
             bottomNavigationBar: BottomNavigationBar(
               items: [
                 _buildBottomNavigationBarItem(Icons.home, 'Home'),

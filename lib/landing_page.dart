@@ -48,6 +48,7 @@ class _Landing_PageState extends State<Landing_Page> {
           child: Stack(
             children: [
               Scaffold(
+                key: _scaffoldKey,
                 appBar: PreferredSize(
                   preferredSize: const Size.fromHeight(90), // Increase the AppBar height
                   child: Padding(
@@ -83,7 +84,6 @@ class _Landing_PageState extends State<Landing_Page> {
                           ),
                         ),
                         leading: Padding(
-
                           padding: const EdgeInsets.only(top: 10.0),
                           child: IconButton(
                             icon: const Icon(

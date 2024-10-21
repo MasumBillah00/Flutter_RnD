@@ -2,9 +2,9 @@ import 'package:autologout_biometric/fitness_tracker/view/screen/home_screen.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import '../../bloc/todo_app/todo_app_bloc.dart';
-import '../../bloc/todo_app/todo_app_event.dart';
-import '../../bloc/todo_app/todo_app_state.dart';
+import '../../../bloc/todo_bloc/todo_app/todo_app_bloc.dart';
+import '../../../bloc/todo_bloc/todo_app/todo_app_event.dart';
+import '../../../bloc/todo_bloc/todo_app/todo_app_state.dart';
 import '../component/alert_dialog.dart';
 import '../component/image_design.dart';
 import '../note/note_taking_app.dart';

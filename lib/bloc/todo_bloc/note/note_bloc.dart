@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../database/note_database.dart';
+import '../../../database/todo_database/note_database.dart';
 import 'note_event.dart';
 import 'note_state.dart';
 

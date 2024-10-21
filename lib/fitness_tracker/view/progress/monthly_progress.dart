@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../bloc/workout_bloc.dart';
-import '../../bloc/workout_state.dart';
+import '../../../bloc/workout_bloc/workout_bloc.dart';
+import '../../../bloc/workout_bloc/workout_state.dart';
 import '../../model/workout_model.dart';
 
 class MonthlyProgressChart extends StatefulWidget {

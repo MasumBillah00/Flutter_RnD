@@ -2,7 +2,7 @@
 // lib/blocs/workout_state.dart
 
 import 'package:equatable/equatable.dart';
-import '../model/workout_model.dart';
+import '../../fitness_tracker/model/workout_model.dart';
 
 abstract class WorkoutState extends Equatable {
   @override

@@ -79,13 +79,11 @@ class AppTheme {
       foregroundColor: Colors.white,
       elevation: 4.0,
       centerTitle: true,
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
     ),
-
-
   );
 }

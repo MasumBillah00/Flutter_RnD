@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/note/note_bloc.dart';
-import '../../bloc/note/note_event.dart';
-import '../../bloc/note/note_state.dart';
+import '../../../bloc/todo_bloc/note/note_bloc.dart';
+import '../../../bloc/todo_bloc/note/note_event.dart';
+import '../../../bloc/todo_bloc/note/note_state.dart';
 import '../../model/note_model.dart';
 
 

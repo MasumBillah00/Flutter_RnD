@@ -1,7 +1,7 @@
 // lib/blocs/workout_event.dart
 
 import 'package:equatable/equatable.dart';
-import '../model/workout_model.dart';
+import '../../fitness_tracker/model/workout_model.dart';
 
 abstract class WorkoutEvent extends Equatable {
   @override

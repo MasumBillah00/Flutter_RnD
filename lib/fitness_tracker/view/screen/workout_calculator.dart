@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../bloc/workout_bloc/workout_bloc.dart';
+import '../../../bloc/workout_bloc/workout_event.dart';
 import '../../../inactivitytimer.dart';
-import '../../bloc/workout_bloc.dart';
-import '../../bloc/workout_event.dart';
 import '../../model/workout_model.dart';
 import '../../widget/textform_field.dart';
 import '../../widget/workout_formfield.dart';
@@ -119,7 +119,7 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
       children: [
         SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
                 const Text(
@@ -166,22 +166,7 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
             ),
           ),
         ),
-        // Positioned(
-        //   bottom: 70,
-        //   right: 10,
-        //   child: TimerDisplay(
-        //     inactivityTimerNotifier: widget.inactivityTimerNotifier,
-        //     graceTimerNotifier: widget.graceTimerNotifier,
-        //   ),
-        // ),
-        Positioned(
-          bottom: 70,
-          right: 10,
-          child: TimerDisplay(
-            inactivityTimerNotifier: widget.inactivityTimerNotifier,
-            graceTimerNotifier: widget.graceTimerNotifier,
-          ),
-        ),
+
       ],
     );
   }

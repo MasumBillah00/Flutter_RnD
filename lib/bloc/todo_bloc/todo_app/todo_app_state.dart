@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../model/todo_task_model.dart';
+import '../../../todo_app/model/todo_task_model.dart';
 
 enum ListStatus { loading, success, failure, initial }
 

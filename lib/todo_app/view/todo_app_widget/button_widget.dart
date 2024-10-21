@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/todo_app/todo_app_bloc.dart';
-import '../../bloc/todo_app/todo_app_event.dart';
+import '../../../bloc/todo_bloc/todo_app/todo_app_bloc.dart';
+import '../../../bloc/todo_bloc/todo_app/todo_app_event.dart';
 import '../../model/todo_task_model.dart';
 import '../todo_app_screen/task_add_screen.dart';
 

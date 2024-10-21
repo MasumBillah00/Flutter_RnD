@@ -16,7 +16,7 @@ class InactivityListener extends StatefulWidget {
     required this.child,
     required this.inactivityTimerNotifier,
     required this.graceTimerNotifier,
-    this.timeoutDuration = const Duration(seconds: 3000),
+    this.timeoutDuration = const Duration(seconds: 120),
     this.gracePeriodDuration = const Duration(seconds: 60),
   });
   @override
@@ -45,7 +45,6 @@ class _InactivityListenerState extends State<InactivityListener> {
 
   void _startInactivityTimer() {
     _cancelInactivityTimer();
-    //print('set new time');
     _remainingInactivitySeconds = widget.timeoutDuration.inSeconds;
     _inactivityTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingInactivitySeconds > 0) {
@@ -66,7 +65,6 @@ class _InactivityListenerState extends State<InactivityListener> {
     setState(() {
       _isGracePeriodActive = true;
     });
-    //print('start grace timer');
 
     _remainingGraceSeconds = widget.gracePeriodDuration.inSeconds;
     widget.graceTimerNotifier.value = _remainingGraceSeconds;
@@ -132,8 +130,7 @@ class TimerDisplay extends StatelessWidget {
       height: 60,
       padding: const EdgeInsets.all(1.0),
       child: Card(
-
-        color:Colors.blueGrey.shade900,
+        color: Colors.blueGrey.shade900,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
