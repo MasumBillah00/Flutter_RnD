@@ -21,16 +21,13 @@ import 'inactivitytimer.dart';
 void main() {
   final databaseHelper = TodoDatabaseHelper();
   final noteDatabaseProvider = DatabaseProvider();
-
   runApp(MyApp(databaseHelper, noteDatabaseProvider));
 }
-
 class MyApp extends StatelessWidget {
-  final inactivityTimerNotifier = ValueNotifier<int>(100);
+  final inactivityTimerNotifier = ValueNotifier<int>(120);
   final graceTimerNotifier = ValueNotifier<int>(60);
   final TodoDatabaseHelper databaseHelper;
   final DatabaseProvider noteDatabaseProvider;
-
    MyApp(this.databaseHelper, this.noteDatabaseProvider, {super.key});
 
   @override

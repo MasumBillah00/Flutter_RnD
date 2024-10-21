@@ -2,6 +2,7 @@
 import 'package:autologout_biometric/bmi_calculator/screen/input_page.dart';
 import 'package:autologout_biometric/bottom_sheet/screens/bottom_sheet_home.dart';
 import 'package:autologout_biometric/fitness_tracker/view/screen/home_screen.dart';
+import 'package:autologout_biometric/screens/home_page/drawer.dart';
 import 'package:autologout_biometric/screens/home_page/home_page.dart';
 import 'package:autologout_biometric/screens/loginpage.dart';
 import 'package:autologout_biometric/todo_app/view/todo_app_screen/todo_app_screen.dart';
@@ -15,6 +16,7 @@ class Landing_Page extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
   final ValueNotifier<int> graceTimerNotifier;
 
+
   Landing_Page({super.key, required this.inactivityTimerNotifier, required this.graceTimerNotifier});
 
   @override
@@ -22,6 +24,9 @@ class Landing_Page extends StatefulWidget {
 }
 
 class _Landing_PageState extends State<Landing_Page> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
@@ -48,11 +53,12 @@ class _Landing_PageState extends State<Landing_Page> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 0.0, right: 0.0),
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20), // Apply radius to bottom corners
-                        bottomRight: Radius.circular(20),
-                      ),
+                      // borderRadius: const BorderRadius.only(
+                      //   bottomLeft: Radius.circular(20), // Apply radius to bottom corners
+                      //   bottomRight: Radius.circular(20),
+                      // ),
                       child: AppBar(
+
                         title: const Center(
                           child: Padding(
                             padding: EdgeInsets.only(top: 33), // Adjust padding to vertically center the title
@@ -61,28 +67,51 @@ class _Landing_PageState extends State<Landing_Page> {
                               style: TextStyle(
                                 fontSize: 24, // Adjust font size if needed
                               ),
+
                             ),
+
                           ),
                         ),
                         flexibleSpace: Container(
                           decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Colors.blue, Colors.greenAccent], // Add a gradient for more style
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
+                            color: Colors.blue
+                            // gradient: LinearGradient(
+                            //   colors: [Colors.blue, Colors.greenAccent], // Add a gradient for more style
+                            //   begin: Alignment.centerRight,
+                            //   end: Alignment.centerLeft,
+                            // ),
+                          ),
+                        ),
+                        leading: Padding(
+
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.menu,
+                              color: Colors.white,
+                              size: 40,
                             ),
+                            onPressed: () {
+                             _scaffoldKey.currentState?.openDrawer(); // Open the drawer when pressed
+                            },
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
+                drawer: CustomDrawer(
+                  inactivityTimerNotifier: widget.inactivityTimerNotifier,
+                  graceTimerNotifier: widget.graceTimerNotifier,
+                ),
                 body: Padding(
                   padding: const EdgeInsets.all(2.0),
+
                   child: SingleChildScrollView(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,21 +119,21 @@ class _Landing_PageState extends State<Landing_Page> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePage(
+                                      builder: (context) => Process_HomePage(
                                         inactivityTimerNotifier: widget.inactivityTimerNotifier,
                                         graceTimerNotifier: widget.graceTimerNotifier,
                                       ),
                                     ),
                                   );
                                 },
-                                child: Card(
+                                child:  Card(
                                   elevation: 4,
                                   color: Colors.blue.shade300,
                                   child: const SizedBox(
-                                    height: 180,
+                                    height: 230,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
@@ -142,7 +171,7 @@ class _Landing_PageState extends State<Landing_Page> {
                                   elevation: 4,
                                   color: Colors.greenAccent,
                                   child: SizedBox(
-                                    height: 180,
+                                    height: 230,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
@@ -182,7 +211,7 @@ class _Landing_PageState extends State<Landing_Page> {
                                   elevation: 4,
                                   color: Colors.greenAccent,
                                   child: SizedBox(
-                                    height: 180,
+                                    height: 230,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
@@ -221,7 +250,7 @@ class _Landing_PageState extends State<Landing_Page> {
                                   color: Colors.blue.shade300,
                                   shadowColor: Colors.black87,
                                   child: const SizedBox(
-                                    height: 180,
+                                    height: 230,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
@@ -263,7 +292,7 @@ class _Landing_PageState extends State<Landing_Page> {
                                     color: Colors.blue.shade300,
                                     shadowColor: Colors.black87,
                                     child: const SizedBox(
-                                      height: 180,
+                                      height: 230,
                                       width: 160,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -300,7 +329,7 @@ class _Landing_PageState extends State<Landing_Page> {
                                   elevation: 4,
                                   color: Colors.greenAccent,
                                   child: SizedBox(
-                                    height: 180,
+                                    height: 230,
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [

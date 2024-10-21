@@ -11,21 +11,21 @@ import '../process_list/processlist_page.dart';
 import 'bottom_nav_bar.dart';
 import 'drawer.dart';
 
-class HomePage extends StatefulWidget {
+class Process_HomePage extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
   final ValueNotifier<int> graceTimerNotifier;
 
-  const HomePage({
+  const Process_HomePage({
     Key? key,
     required this.inactivityTimerNotifier,
     required this.graceTimerNotifier,
   }) : super(key: key);
 
   @override
-  HomePageState createState() => HomePageState();
+  Process_HomePageState createState() => Process_HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class Process_HomePageState extends State<Process_HomePage> {
   int _currentIndex = 0; // To track the selected tab index
   bool _isLoading = false; // Variable to control loading overlay visibility
 
@@ -69,7 +69,7 @@ class HomePageState extends State<HomePage> {
                   title: const Padding(
                     padding:  EdgeInsets.only(top: 10.0),
                     child:  Text(
-                      'Home',
+                      'Process',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 40,
@@ -96,7 +96,9 @@ class HomePageState extends State<HomePage> {
               ),
               drawer:  CustomDrawer(
                 inactivityTimerNotifier: widget.inactivityTimerNotifier,
-                graceTimerNotifier: widget.graceTimerNotifier,),
+                graceTimerNotifier: widget.graceTimerNotifier,
+              ),
+
             ),
             // Position the TimerDisplay widget
             Positioned(
