@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/auth_bloc.dart';
 import '../../../../bloc/auth_state.dart';
 import '../../../../inactivitytimer.dart';
-import '../../../process_data/screens/loginpage.dart';
+import '../../../../login/loginpage.dart';
 import '../progress/caloris_progress.dart';
 import '../stats/stats.dart';
 import '../widget/drawer_widget.dart';

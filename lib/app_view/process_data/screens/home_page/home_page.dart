@@ -7,7 +7,7 @@ import '../../../../bloc/auth_bloc.dart';
 import '../../../../bloc/auth_event.dart';
 import '../../../../bloc/auth_state.dart';
 import '../../../../inactivitytimer.dart';
-import '../loginpage.dart';
+import '../../../../login/loginpage.dart';
 import '../process_list/processlist_page.dart';
 import 'bottom_nav_bar.dart';
 import 'drawer.dart';

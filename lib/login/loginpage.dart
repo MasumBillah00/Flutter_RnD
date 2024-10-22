@@ -4,11 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:local_auth/local_auth.dart';
 
-import '../../../bloc/auth_bloc.dart';
-import '../../../bloc/auth_state.dart';
-import '../../../landing_page.dart';
-import '../../../logic/login/biometric_logic.dart';
-import '../../../logic/login/login_logic.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_state.dart';
+import '../landing_page.dart';
+import 'logic/biometric_logic.dart';
+import 'logic/login_logic.dart';
+
 
 class LoginPage extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
