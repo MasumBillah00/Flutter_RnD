@@ -1,13 +1,13 @@
 
-import 'package:autologout_biometric/bmi_calculator/screen/input_page.dart';
-import 'package:autologout_biometric/bottom_sheet/screens/bottom_sheet_home.dart';
-import 'package:autologout_biometric/fitness_tracker/view/screen/home_screen.dart';
-import 'package:autologout_biometric/screens/home_page/drawer.dart';
-import 'package:autologout_biometric/screens/home_page/home_page.dart';
-import 'package:autologout_biometric/screens/loginpage.dart';
-import 'package:autologout_biometric/todo_app/view/todo_app_screen/todo_app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'app_view/bmi_calculator/screen/input_page.dart';
+import 'app_view/bottom_sheet/screens/bottom_sheet_home.dart';
+import 'app_view/fitness_tracker/view/screen/home_screen.dart';
+import 'app_view/process_data/screens/home_page/drawer.dart';
+import 'app_view/process_data/screens/home_page/home_page.dart';
+import 'app_view/process_data/screens/loginpage.dart';
+import 'app_view/todo_app/view/todo_app_screen/todo_app_screen.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/auth_state.dart';
 import 'inactivitytimer.dart';

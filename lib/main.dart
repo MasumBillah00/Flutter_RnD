@@ -1,10 +1,11 @@
 import 'package:autologout_biometric/landing_page.dart';
-import 'package:autologout_biometric/screens/loginpage.dart';
+import 'package:autologout_biometric/repository/fitness_repository/repository/workout_repository.dart';
+import 'package:autologout_biometric/repository/todo_repository/repository/todo_repository.dart';
 import 'package:autologout_biometric/theme/apptheme.dart';
-import 'package:autologout_biometric/todo_app/repository/todo_repository.dart';
 import 'package:autologout_biometric/todo_app/ulitis/image_picker_itilis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'app_view/process_data/screens/loginpage.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/auth_state.dart';
 import 'bloc/todo_bloc/image_picker/image_picker_bloc.dart';
@@ -15,7 +16,6 @@ import 'bloc/workout_bloc/workout_bloc.dart';
 import 'bloc/workout_bloc/workout_event.dart';
 import 'database/todo_database/database_helper.dart';
 import 'database/todo_database/note_database.dart';
-import 'fitness_tracker/repository/workout_repository.dart';
 import 'inactivitytimer.dart';
 
 void main() {

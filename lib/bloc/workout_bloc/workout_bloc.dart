@@ -1,8 +1,9 @@
 // lib/blocs/workout_bloc.dart
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../fitness_tracker/model/workout_model.dart';
-import '../../fitness_tracker/repository/workout_repository.dart';
+
+import '../../app_model/fitness_model/model/workout_model.dart';
+import '../../repository/fitness_repository/repository/workout_repository.dart';
 import 'workout_event.dart';
 import 'workout_state.dart';
 

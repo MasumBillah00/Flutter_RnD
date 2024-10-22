@@ -1,6 +1,6 @@
 
 
-import '../../../todo_app/model/note_model.dart';
+import '../../../app_model/todo_model/model/note_model.dart';
 
 abstract class NoteEvent {}
 

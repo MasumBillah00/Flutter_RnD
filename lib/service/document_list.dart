@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-import '../model/documents_model.dart';
+import '../app_model/process_model/documents_model.dart';
+
 
 Future<File> fetchAndSaveDocument(int documentRSN) async {
   final response = await http.post(

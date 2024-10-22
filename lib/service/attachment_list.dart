@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
-import '../model/attachment_model.dart';
+import '../app_model/process_model/attachment_model.dart';
 
 Future<Uint8List?> fetchAttachmentContent(int attachmentRSN) async {
   final response = await http.post(

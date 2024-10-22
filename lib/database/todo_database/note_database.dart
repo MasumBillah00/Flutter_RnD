@@ -1,7 +1,8 @@
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../../todo_app/model/note_model.dart';
+
+import '../../app_model/todo_model/model/note_model.dart';
 
 class DatabaseProvider {
   static final DatabaseProvider _instance = DatabaseProvider._internal();
