@@ -16,7 +16,7 @@ class InactivityListener extends StatefulWidget {
     required this.child,
     required this.inactivityTimerNotifier,
     required this.graceTimerNotifier,
-    this.timeoutDuration = const Duration(seconds: 1200),
+    this.timeoutDuration = const Duration(seconds: 120),
     this.gracePeriodDuration = const Duration(seconds: 60),
   });
   @override

@@ -50,7 +50,7 @@ class _Landing_PageState extends State<Landing_Page> {
               Scaffold(
                 key: _scaffoldKey,
                 appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(90), // Increase the AppBar height
+                  preferredSize: const Size.fromHeight(80), // Increase the AppBar height
                   child: Padding(
                     padding: const EdgeInsets.only(left: 0.0, right: 0.0),
                     child: ClipRRect(
@@ -68,9 +68,7 @@ class _Landing_PageState extends State<Landing_Page> {
                               style: TextStyle(
                                 fontSize: 24, // Adjust font size if needed
                               ),
-
                             ),
-
                           ),
                         ),
                         flexibleSpace: Container(
