@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
-              backgroundColor: Colors.blueGrey, // Set background color
+              backgroundColor: Colors.blue.shade600, // Set background color
               selectedItemColor: Colors.amber, // Color of selected icon and label
               unselectedItemColor: Colors.white70, // Color of unselected icons and labels
               showUnselectedLabels: true, // Show labels for unselected items
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: Icon(
         icon,
         size: 30,
-        color: Colors.greenAccent.shade400,
+        color: Colors.white,
         shadows: const [
           Shadow(
             offset: Offset(3.0, 3.0), // Shadow position

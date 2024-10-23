@@ -26,133 +26,113 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Favorite Item',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Favorite Item',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
             ),
-            centerTitle: true,
           ),
-          drawer: ToDo_Drawer(onItemTapped: widget.onItemTapped,
-            inactivityTimerNotifier: widget.inactivityTimerNotifier,
-            graceTimerNotifier: widget.graceTimerNotifier,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(top: 10,),
-            child: BlocBuilder<ToDoAppBloc, TodoappState>(
-              builder: (context, state) {
-                if (state.listStatus == ListStatus.loading) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (state.listStatus == ListStatus.failure) {
-                  return const Center(child: Text('Failed to load tasks'));
-                } else if (state.favouriteList.isEmpty) {
-                  return const Center(child: Text('No favorite items'));
-                } else {
-                  return ListView.builder(
-                    itemCount: state.favouriteList.length,
-                    itemBuilder: (context, index) {
-                      final item = state.favouriteList[index];
-                      final isSelected = state.selectedList.contains(item);
-                      String formattedDate = DateFormat.MMMd().format(item.date);
+          centerTitle: true,
+        ),
+        drawer: ToDo_Drawer(onItemTapped: widget.onItemTapped,
+          inactivityTimerNotifier: widget.inactivityTimerNotifier,
+          graceTimerNotifier: widget.graceTimerNotifier,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 10,),
+          child: BlocBuilder<ToDoAppBloc, TodoappState>(
+            builder: (context, state) {
+              if (state.listStatus == ListStatus.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.listStatus == ListStatus.failure) {
+                return const Center(child: Text('Failed to load tasks'));
+              } else if (state.favouriteList.isEmpty) {
+                return const Center(child: Text('No favorite items'));
+              } else {
+                return ListView.builder(
+                  itemCount: state.favouriteList.length,
+                  itemBuilder: (context, index) {
+                    final item = state.favouriteList[index];
+                    final isSelected = state.selectedList.contains(item);
+                    String formattedDate = DateFormat.MMMd().format(item.date);
 
-                      return Card(
-                        color: Colors.grey[800],
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ListTile(
-                          // title: CustomText(
-                          //   text: item.value,
-                          // ),
-                          // subtitle: DCustomText(
-                          //   text: item.description,
-                          //   isSelected: isSelected,
-                          // ),
-                          title: Column(
-                            //crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    text: item.value,
+                    return Card(
+                      color: Colors.grey[800],
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ListTile(
+
+                        title: Column(
+                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CustomText(
+                                  text: item.value,
+                                  isSelected: isSelected,
+
+                                ),
+                                Text(formattedDate,
+                                  style: const TextStyle(color: Colors.amber),),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 155,
+                                  child: DCustomText(
+                                    text: item.description,
                                     isSelected: isSelected,
-
+                                    showSeeMore: true,
                                   ),
-                                  Text(formattedDate),
-                                ],
-                              ),
-                              const SizedBox(height: 5),
-                              // DCustomText(
-                              //   text: item.description,
-                              //   isSelected: isSelected,
-                              // ),
-                              // if (item.image.isNotEmpty) ...[
-                              //   const SizedBox(height: 5),
-                              //   Image.file(
-                              //     File(item.image),
-                              //     height: 180,
-                              //
-                              //   ),
-                              // ],
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: 155,
-                                    child: DCustomText(
-                                      text: item.description,
-                                      isSelected: isSelected,
-                                      showSeeMore: true,
-                                    ),
-                                  ),
-                                  const SizedBox(width:5,),
+                                ),
+                                const SizedBox(width:5,),
 
-                                  if (item.image.isNotEmpty) ...[
-                                    const SizedBox(height: 5),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Container(
-                                        height: 150,
-                                        width: 110,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(12), // Adjust the border radius as needed
-                                          border: Border.all(
-                                            color: Colors.blue, // Set the border color
-                                            width: 2, // Set the border width
-                                          ),
-                                          shape: BoxShape.rectangle, // Can be BoxShape.circle for circular images
+                                if (item.image.isNotEmpty) ...[
+                                  const SizedBox(height: 5),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      height: 150,
+                                      width: 110,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12), // Adjust the border radius as needed
+                                        border: Border.all(
+                                          color: Colors.blue, // Set the border color
+                                          width: 2, // Set the border width
                                         ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(12), // Match the border radius here
-                                          child: Image.file(
-                                            File(item.image),
-                                            fit: BoxFit.cover,
-                                          ),
+                                        shape: BoxShape.rectangle, // Can be BoxShape.circle for circular images
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12), // Match the border radius here
+                                        child: Image.file(
+                                          File(item.image),
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                  ]
-                                ],
-                              ),
-                            ],
-                          ),
-
+                                  ),
+                                ]
+                              ],
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                  );
-                }
-              },
-            ),
+
+                      ),
+                    );
+                  },
+                );
+              }
+            },
           ),
         ),
       ),

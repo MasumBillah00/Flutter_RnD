@@ -1,31 +1,6 @@
 
 import 'package:flutter/material.dart';
 
-// class Card_Widget extends StatelessWidget {
-//   const Card_Widget({
-//     super.key,
-//     required this.item,
-//     //required this.title,
-//   });
-//
-//
-//
-//   final TodoTaskModel item;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       color: Colors.grey[800],
-//       elevation: 4,
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//       child: ListTile(
-//         title: Text_Widget(item: item),
-//       ),
-//     );
-//   }
-// }
 
 class CustomText extends StatelessWidget {
   final String text;
@@ -92,7 +67,7 @@ class _DCustomTextState extends State<DCustomText> {
         Text(
           displayText,
           style: TextStyle(
-            color: widget.isSelected ? Colors.amber.shade100 : Colors.white70,
+            color: widget.isSelected ? Colors.red.shade200 : Colors.amber.shade500,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

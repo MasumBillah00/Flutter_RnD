@@ -1,29 +1,23 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../app_model/fitness_model/model/workout_model.dart';
 import '../../../../bloc/workout_bloc/workout_bloc.dart';
 import '../../../../bloc/workout_bloc/workout_event.dart';
 import '../widget/textform_field.dart';
 import '../widget/workout_formfield.dart';
 
-
 class WorkoutCalculator extends StatefulWidget {
   final ValueNotifier<int> inactivityTimerNotifier;
   final ValueNotifier<int> graceTimerNotifier;
 
-  const WorkoutCalculator({super.key,
+  const WorkoutCalculator({
+    super.key,
     required this.inactivityTimerNotifier,
     required this.graceTimerNotifier,
   });
-
-
   @override
   State<WorkoutCalculator> createState() => _WorkoutCalculatorState();
 }
-
 class _WorkoutCalculatorState extends State<WorkoutCalculator> {
   final _durationController = TextEditingController();
   final _caloriesController = TextEditingController();
@@ -35,29 +29,15 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
     'PushUP': 8,
     'Endurance': 7,
   };
-  //late TimerManager _timerManager;
-
-  // int _remainingTime = 60; // Example countdown starting from 60 seconds
 
   @override
   void initState() {
     super.initState();
-   // _timerManager = TimerManager(
-   //      context: context,
-   //      initialTime: 60,
-   //      onTick: _updateTimerDisplay
-   //  );
-   // _timerManager.startLogoutTimer(); // Start timer using TimerManager
   }
-  void _updateTimerDisplay() {
-    setState(() {}); // Trigger a rebuild to update the timer display
-  }
-
-
 
   void _calculateCalories() {
-    final duration = int.tryParse(_durationController.text) ?? 0;
-    final rate = calorieRates[dropdownValue] ?? 0;
+    final duration = int.tryParse(_durationController.text)?.abs() ?? 0;
+    final rate = calorieRates[dropdownValue]?.abs() ?? 0;
     final totalCalories = duration * rate;
 
     setState(() {
@@ -65,13 +45,11 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
     });
   }
 
-
-
   void _submitWorkout() {
     final workout = Workout(
       type: dropdownValue,
-      duration: int.tryParse(_durationController.text) ?? 0,
-      calories: int.tryParse(_caloriesController.text) ?? 0,
+      duration: int.tryParse(_durationController.text)?.abs() ?? 0,
+      calories: int.tryParse(_caloriesController.text)?.abs() ?? 0,
       date: DateTime.now(),
     );
 
@@ -83,13 +61,13 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Success'),
-          content: const Text('Workout added successfully!'),
+          content: const Text('Workout added successfully!',style: TextStyle(color: Colors.black45),),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: const Text('OK'),
+              child: const Text('OK',style: TextStyle(color: Colors.black),),
             ),
           ],
         );
@@ -109,8 +87,6 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
   void dispose() {
     _durationController.dispose();
     _caloriesController.dispose();
-    // _timerManager.cancelTimer(); // Cancel timer on dispose
-    //_timerManager.dispose();
     super.dispose();
   }
 
@@ -137,9 +113,9 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
                   onChanged: (String? newValue) {
                     if (newValue != null) {
                       setState(
-                            () {
+                        () {
                           dropdownValue = newValue;
-                          _calculateCalories(); // Recalculate calories when workout type changes
+                          _calculateCalories();
                         },
                       );
                     }
@@ -149,7 +125,7 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
                   label: 'Duration (in minutes)',
                   controller: _durationController,
                   onChanged: (text) {
-                    _calculateCalories(); // Recalculate calories when duration changes
+                    _calculateCalories();
                   },
                 ),
                 WorkoutTextFormField(
@@ -167,7 +143,6 @@ class _WorkoutCalculatorState extends State<WorkoutCalculator> {
             ),
           ),
         ),
-
       ],
     );
   }

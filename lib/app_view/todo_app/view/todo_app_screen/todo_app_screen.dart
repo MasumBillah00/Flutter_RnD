@@ -82,7 +82,7 @@ class _ToDoAppScreenState extends State<ToDoAppScreen> {
 
                     // Ensure UI is built properly here
                     return Card(
-                      color: Colors.grey[900],
+                      color: Colors.grey[700],
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -194,11 +194,11 @@ class _ToDoAppScreenState extends State<ToDoAppScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+        padding: const EdgeInsets.only(top: 10,),
         child: Scaffold(
           appBar: _selectedIndex == 0
               ? AppBar(
-            backgroundColor: Colors.amber.shade600,
+           // backgroundColor: Colors.amber.shade600,
             title: const Text(
               'TODO APP',
               style: TextStyle(

@@ -26,64 +26,61 @@ class CompleteTasksScreen extends StatefulWidget {
 class _CompleteTasksScreenState extends State<CompleteTasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Finished Task',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Finished Task',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
             ),
-            centerTitle: true,
           ),
-          drawer: ToDo_Drawer(onItemTapped: widget.onItemTapped,
-            inactivityTimerNotifier:widget.inactivityTimerNotifier ,
-            graceTimerNotifier: widget.graceTimerNotifier,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
-            child: BlocBuilder<ToDoAppBloc, TodoappState>(
-              builder: (context, state) {
-                if (state.selectedList.isEmpty) {
-                  return const Center(child: Text('No completed task yet'));
-                }
-                return ListView.builder(
-                  itemCount: state.selectedList.length,
-                  itemBuilder: (context, index) {
-                    final item = state.selectedList[index];
-                    final isSelected = state.selectedList.contains(item);
-                    return Card(
-                      color: Colors.grey[800],
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+          centerTitle: true,
+        ),
+        drawer: ToDo_Drawer(onItemTapped: widget.onItemTapped,
+          inactivityTimerNotifier:widget.inactivityTimerNotifier ,
+          graceTimerNotifier: widget.graceTimerNotifier,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+          child: BlocBuilder<ToDoAppBloc, TodoappState>(
+            builder: (context, state) {
+              if (state.selectedList.isEmpty) {
+                return const Center(child: Text('No completed task yet'));
+              }
+              return ListView.builder(
+                itemCount: state.selectedList.length,
+                itemBuilder: (context, index) {
+                  final item = state.selectedList[index];
+                  final isSelected = state.selectedList.contains(item);
+                  return Card(
+                    color: Colors.grey[800],
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ListTile(
+                      title: CustomText(
+                        text: item.value,
                       ),
-                      child: ListTile(
-                        title: CustomText(
-                          text: item.value,
-                        ),
-                        subtitle: DCustomText(
-                          text: item.description,
-                          isSelected: isSelected,
-                        ),
-                        trailing: CustomIconButton(
-                          icon: Icons.delete,
-                          // size: 30,
-                          color: AppColors.deleteColor,
-                          onPressed: () {
-                            _showHideConfirmationDialog(context, item.id, item.value);
-                          },
-                        ),
+                      subtitle: DCustomText(
+                        text: item.description,
+                        isSelected: isSelected,
                       ),
-                    );
-                  },
-                );
-              },
-            ),
+                      trailing: CustomIconButton(
+                        icon: Icons.delete,
+                        // size: 30,
+                        color: AppColors.deleteColor,
+                        onPressed: () {
+                          _showHideConfirmationDialog(context, item.id, item.value);
+                        },
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ),
       ),

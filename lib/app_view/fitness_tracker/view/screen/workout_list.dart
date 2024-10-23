@@ -13,9 +13,9 @@ class WorkoutList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Workout List'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Workout List'),
+      // ),
       body: BlocBuilder<WorkoutBloc, WorkoutState>(
         builder: (context, state) {
           if (state is WorkoutsLoading) {
@@ -26,8 +26,16 @@ class WorkoutList extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Column(
                     children: [
+                       const Padding(
+                         padding: EdgeInsets.all(8.0),
+                         child: Text('Work Out LIst', style: TextStyle(
+                             fontSize: 20,
+                           fontWeight: FontWeight.bold,
+                           color: Colors.black87,
+                         ),),
+                       ),
                       DataTable(
-                        columnSpacing: 22,
+                        columnSpacing: 20,
                         columns: const [
                           DataColumn(
                             label: Text('Date', textAlign: TextAlign.center),

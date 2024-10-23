@@ -18,14 +18,14 @@ void showConfirmationDialog({
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
             },
-            child: const Text('Cancel'),
+            child: const Text('Cancel',style: TextStyle(color: Colors.black),),
           ),
           TextButton(
             onPressed: () {
               onConfirm();
               Navigator.of(context).pop(); // Close the dialog
             },
-            child: const Text('Delete'),
+            child: const Text('Delete',style: TextStyle(color: Colors.red),),
           ),
         ],
       );

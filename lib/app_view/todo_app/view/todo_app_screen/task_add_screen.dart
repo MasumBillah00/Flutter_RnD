@@ -55,7 +55,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber.shade600,
+        //backgroundColor: Colors.amber.shade600,
         title: const Text('Add Task'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

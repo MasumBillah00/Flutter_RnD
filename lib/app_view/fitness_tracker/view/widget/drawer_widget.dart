@@ -41,7 +41,7 @@ class _Fitness_DrawerState extends State<Fitness_Drawer> {
                 SizedBox(
                   height: 120,
                   child: DrawerHeader(
-                    decoration: BoxDecoration(color: Colors.blueGrey[900], borderRadius: BorderRadius.circular(13)),
+                    decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(13)),
                     child: const Text(
                       'Fitness Tracker',
                       style: TextStyle(
